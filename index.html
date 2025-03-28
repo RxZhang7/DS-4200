@@ -9,32 +9,251 @@
 
   <h1>Bluebike Usage and Weather Analysis</h1>
 
+  <h3>Overall Introduction</h3>
+
+    <p>Understanding Bluebike usage in Boston is crucial for evaluating
+      the effectiveness of urban transportation and enhancing the overall
+      mobility experience for residents and visitors. Bluebike systems offer
+      an affordable and eco-friendly alternative to traditional commuting, 
+      thereby playing a key role in reducing traffic congestion and 
+      environmental impact. </p>
+
+    <p>Weather conditions are one of the most significant factors 
+      influencing Bluebike ridership. Clear and pleasant weather tends
+      to encourage more people to use Bluebikes, while rain, snow, or 
+      extreme temperatures often result in a notable decline in trips. 
+      This project examines how varying weather scenarios—ranging from sunny
+      and clear skies to overcast, rainy, and snowy conditions—affect daily 
+      ridership patterns and user behavior.</p>
+
+    <p>In addition to weather, other factors such as time of day, day of
+      the week, and the differences between regular members and casual users
+      further shape usage trends. By analyzing these elements, we aim to 
+      provide insights that can help optimize bike availability, improve 
+      service planning, and ultimately enhance the overall user experience.</p>
+
+    <p>To learn more about how weather affects bikeshare usage and its implications,
+       you can visit the <a href="https://doi.org/10.1016/j.trangeo.2021.103155">
+       Bean, R., Pojani, D., &amp; Corcoran, J. (2021) study</a>
+       or explore analysis reports from reputable research organizations like the
+       <a href="https://www.pewresearch.org/">Pew Research Center</a>.</p>
+
+  <h3>Introduction to the Data</h3>
+
+    <p>Our analysis makes use of two primary datasets. The first is a 
+    <code>Bluebikes usage dataset</code> from <a href="https://www.kaggle.com/datasets/akemail/blue-bike-boston-ma-bike-sharing-dataset" target="_blank">Kaggle</a>, 
+    containing detailed ride information from January 2022 through May 2024. 
+    This dataset consists of approximately 20,000 records and 15 features. 
+    Key attributes include ride start time, end time, start station, end station, 
+    ride duration, and membership status (e.g., member vs. casual).</p>
+
+    <p>The second dataset provides <strong>weather data</strong> corresponding 
+    to each ride. It includes temperature, wind speed, humidity, and a 
+    categorical weather condition (e.g., clear, cloudy, rainy, snowy). By 
+    merging these datasets on the ride date (and hour), we can directly observe 
+    how environmental factors correlate with Bluebike usage. </p>
+
+<div class="center">
+  <table class="tg">
+    <thead>
+      <tr>
+        <th class="tg-0lax">Feature Name</th>
+        <th class="tg-0lax">Details</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td class="tg-0lax">ride_id</td>
+        <td class="tg-0lax">Unique identifier for each Bluebike trip</td>
+      </tr>
+      <tr>
+        <td class="tg-0lax">start_time</td>
+        <td class="tg-0lax">Timestamp indicating when the ride began</td>
+      </tr>
+      <tr>
+        <td class="tg-0lax">end_time</td>
+        <td class="tg-0lax">Timestamp indicating when the ride ended</td>
+      </tr>
+      <tr>
+        <td class="tg-0lax">start_station</td>
+        <td class="tg-0lax">Station where the ride started</td>
+      </tr>
+      <tr>
+        <td class="tg-0lax">end_station</td>
+        <td class="tg-0lax">Station where the ride ended</td>
+      </tr>
+      <tr>
+        <td class="tg-0lax">membership_status</td>
+        <td class="tg-0lax">User type (member vs. casual)</td>
+      </tr>
+      <tr>
+        <td class="tg-0lax">ride_duration</td>
+        <td class="tg-0lax">Length of the ride in minutes</td>
+      </tr>
+      <tr>
+        <td class="tg-0lax">temperature</td>
+        <td class="tg-0lax">Air temperature (in °F) at the time of the ride</td>
+      </tr>
+      <tr>
+        <td class="tg-0lax">weather_condition</td>
+        <td class="tg-0lax">Categorical descriptor (clear, cloudy, rainy, snowy, etc.)</td>
+      </tr>
+      <tr>
+        <td class="tg-0lax">wind_speed</td>
+        <td class="tg-0lax">Wind speed (in mph) during the ride</td>
+      </tr>
+      <!-- You can add any other relevant features here -->
+    </tbody>
+  </table>
+</div>
+
+<p>
+  Before analysis, we performed <strong>data cleaning</strong> steps such as:
+  removing incomplete or invalid records, converting timestamps into a 
+  uniform format, and filtering out extreme outliers in ride duration. 
+  We also combined the ride data with weather information by matching the 
+  date and hour, ensuring that each ride is paired with accurate weather 
+  conditions.
+</p>
+
+<p>
+  For spatial analysis, we relied on existing station coordinate data 
+  and city boundary information from Boston’s official 
+  <a href="https://data.boston.gov/" target="_blank">open data portal</a>. 
+  This allows us to create maps visualizing ride density across different 
+  neighborhoods and highlight potential geographic trends in Bluebike usage.
+</p>
+
+<p>
+  By merging trip metrics with corresponding weather variables, our dataset 
+  provides a comprehensive view of how environmental factors affect 
+  ridership patterns. In the following sections, we present various 
+  visualizations to demonstrate how temperature, precipitation, wind speed, 
+  and other factors correlate with changes in ride volume and duration.
+</p>
+
   <!-- Heatmap -->
-  <h2>1. Correlation Heatmap: Weather and Usage</h2>
-  <div class="center">
-    <img src="heatmap.png" alt="Correlation Heatmap" width="800">
+  <h2>Overview of Bluebikes Ridership</h2>
+
+<div class="container">
+  <!-- Image or Chart Section -->
+  <div class="image">
+    <!-- Replace 'overview_barchart.png' with your actual image or iframe for the chart -->
+    <img src="overview_barchart.png" alt="Bluebikes Ridership Overview" width="100%">
   </div>
-  <p>This heatmap illustrates the correlation between Bluebike usage metrics and various weather conditions. Strong positive correlation exists between member ride counts and total travel time. Weekend rides tend to be longer and more common among casual riders.</p>
+
+  <!-- Textual Explanation Section -->
+  <div class="text">
+    <p>
+      This bar chart provides an at-a-glance look at Bluebikes ridership patterns 
+      across different days of the week. The data highlights how weekday commutes 
+      drive a large portion of total trips, whereas weekends often show fewer rides 
+      but longer average durations. Factors such as local events, station proximity 
+      to popular attractions, and weather conditions can further influence these 
+      variations.
+    </p>
+    <p>
+      The higher volume of weekday trips suggests that many riders rely on Bluebikes 
+      for regular commuting, underscoring the system’s importance in everyday urban 
+      travel. Meanwhile, weekend ridership may reflect more leisure-oriented usage, 
+      with riders potentially exploring scenic routes or tourist hotspots. 
+      Understanding these trends helps in planning station maintenance, rebalancing 
+      bikes during peak hours, and enhancing user satisfaction overall.
+    </p>
+  </div>
+</div>
+
 
   <!-- Line Chart -->
   <h2>2. Interactive Line Chart: Hourly Usage Trends by Weather</h2>
   <iframe src="lineplot.html" width="900" height="520" style="border:none;"></iframe>
-  <p>This interactive line chart shows average Bluebike ride counts throughout the day under different weather conditions. Clear and Fair weather see sharp morning and evening peaks, while Rain and Snow significantly reduce usage.</p>
+
+  <p>This interactive line chart displays how Bluebike ride counts vary 
+  throughout the day under different weather conditions. During clear 
+  and fair weather, we see pronounced spikes in the early morning and 
+  late afternoon—typical commuter peaks—indicating that riders are more 
+  inclined to travel by bike when the weather is pleasant. In contrast, 
+  rainy and snowy conditions tend to flatten these peaks, suggesting 
+  that adverse weather discourages potential riders and alters typical 
+  commuting behaviors. By hovering or clicking on different lines, you 
+  can compare how each weather category affects ride volume at various 
+  times of the day.
+  </p>
 
   <!-- Scatter Plot -->
-  <h2>3. Interactive Scatter Plot: Temperature vs Ride Count</h2>
-  <iframe src="scatter.html" width="900" height="520" style="border:none;"></iframe>
-  <p>This interactive scatter plot shows the relationship between temperature and Bluebike ride volume, categorized by weather condition. You can use the radio button to filter by specific weather types. This view highlights how warmer days generally encourage more rides, especially under Clear or Fair skies.</p>
+  <div class="container" style="display: flex; align-items: flex-start;">
+  <div class="text" style="width: 45%; margin-right: 2%;">
+    <h2>3. Interactive Scatter Plot: Temperature vs Ride Count</h2>
+    <p>
+      This scatter plot visualizes the relationship between temperature and 
+      daily Bluebike ride volume, segmented by specific weather conditions. 
+      A convenient radio button allows you to filter the data to focus on 
+      conditions such as Clear, Fair, Rain, or Snow. Overall, warmer days 
+      often see a noticeable uptick in ride count, particularly under Clear 
+      or Fair skies. Conversely, very hot or cold extremes can dampen 
+      ridership, indicating that moderate temperatures provide the most 
+      comfortable conditions for biking.
+    </p>
+  </div>
+  
+    <div class="image" style="width: 50%;">
+    <iframe src="scatter.html" width="100%" height="520" style="border:none;"></iframe>
+  </div>
+</div>
 
   <!-- Bar Chart -->
-  <h2>4. Rider Comparison by Weekday: Member vs Casual</h2>
-  <iframe src="barchart.html" width="850" height="500" style="border:none;"></iframe>
-  <p>This interactive bar chart compares member and casual Bluebike users across days of the week. Select a day from the dropdown to explore how ride counts and ride durations vary by user type. Casual riders tend to have longer ride durations, while members show higher volume on weekdays.</p>
+  <div class="container" style="display: flex; align-items: center; margin-bottom: 40px;">
+  <!-- Visualization Section on the Left -->
+  <div class="image" style="flex: 1; margin-right: 20px;">
+    <iframe src="barchart.html" width="100%" height="500" style="border:none;"></iframe>
+  </div>
+  <!-- Text Section on the Right -->
+  <div class="text" style="flex: 1;">
+    <h2>4. Rider Comparison by Weekday: Member vs Casual</h2>
+    <p>
+      This interactive bar chart compares member and casual Bluebike users across the days of the week.
+      By selecting a specific day from the dropdown menu, you can explore how ride counts and durations vary by user type.
+      Our analysis shows that casual riders typically enjoy longer ride durations, while members contribute to a higher overall volume during weekdays,
+      likely reflecting their reliance on Bluebikes for daily commuting.
+    </p>
+  </div>
+</div>
+
 
   <!-- Map -->
-  <h2>5. Bluebike Ride Count by Neighborhood</h2>
-  <iframe src="map.html" width="900" height="520" style="border:none;"></iframe>
-  <p>This interactive map shows the Bluebike ride counts across Boston's neighborhoods. The color intensity reflects the number of rides, with darker areas indicating higher ride volumes. You can zoom in and click on each neighborhood for more details.</p>
+  <div class="container" style="margin-bottom: 40px;">
+  <!-- Text Section on Top -->
+  <div class="text">
+    <h2>5. Bluebike Ride Count by Neighborhood</h2>
+    <p>
+      This interactive map displays Bluebike ride counts across Boston's neighborhoods.
+      The color intensity represents the density of rides—darker shades indicate higher volumes.
+      Users can zoom in and click on any neighborhood to view detailed statistics. This arrangement
+      allows us to see geographic patterns in ridership, which can be used to inform future service
+      improvements and optimize station placements.
+    </p>
+  </div>
+  <div class="image" style="margin-top: 20px;">
+    <iframe src="map.html" width="900" height="520" style="border:none;"></iframe>
+  </div>
+</div>
+
+  <h3>Summary and Additional Work</h3>
+
+  <p>In this visualization analysis, we explored how weather conditions impact Bluebike usage across Boston.
+    Our study examined various factors such as temperature, precipitation, and wind speed, 
+    and how they influence ride counts, ride duration, and the behavior of both regular members and casual users.
+    The interactive visualizations provide insights into hourly trends, spatial distribution, and user preferences, 
+    highlighting the significant role that weather plays in shaping urban mobility.
+  </p>
+  
+  <p>While our analysis is based on data from January 2022 through May 2024, which offers valuable insights into 
+    current usage patterns, it may not fully capture seasonal fluctuations or rapid changes in user behavior. 
+    Future work could incorporate more granular time-series analysis, integrate additional weather variables 
+    such as precipitation intensity, and examine the impact of special events or transit disruptions. 
+    Such enhancements would further refine our understanding and help optimize Bluebike service management.
+  </p>
+
 
 </body>
 </html>
