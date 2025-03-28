@@ -1,1 +1,45 @@
+<!DOCTYPE html> 
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Bluebike Weather Visualization Project</title>
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+  <h1>Bluebike Usage and Weather Analysis</h1>
+
+  <!-- Heatmap -->
+  <h2>1. Correlation Heatmap: Weather and Usage</h2>
+  <div class="center">
+    <img src="heatmap.png" alt="Correlation Heatmap" width="800">
+  </div>
+  <p>This heatmap illustrates the correlation between Bluebike usage metrics and various weather conditions. Strong positive correlation exists between member ride counts and total travel time. Weekend rides tend to be longer and more common among casual riders.</p>
+
+  <!-- Line Chart -->
+  <h2>2. Interactive Line Chart: Hourly Usage Trends by Weather</h2>
+  <iframe src="lineplot.html" width="900" height="520" style="border:none;"></iframe>
+  <p>This interactive line chart shows average Bluebike ride counts throughout the day under different weather conditions. Clear and Fair weather see sharp morning and evening peaks, while Rain and Snow significantly reduce usage.</p>
+
+  <!-- Scatter Plot -->
+  <h2>3. Interactive Scatter Plot: Temperature vs Ride Count</h2>
+  <iframe src="scatter.html" width="900" height="520" style="border:none;"></iframe>
+  <p>This interactive scatter plot shows the relationship between temperature and Bluebike ride volume, categorized by weather condition. You can use the radio button to filter by specific weather types. This view highlights how warmer days generally encourage more rides, especially under Clear or Fair skies.</p>
+
+  <!-- Bar Chart -->
+  <h2>4. Rider Comparison by Weekday: Member vs Casual</h2>
+  <iframe src="barchart.html" width="850" height="500" style="border:none;"></iframe>
+  <p>This interactive bar chart compares member and casual Bluebike users across days of the week. Select a day from the dropdown to explore how ride counts and ride durations vary by user type. Casual riders tend to have longer ride durations, while members show higher volume on weekdays.</p>
+
+  <!-- Map -->
+  <h2>5. Bluebike Ride Count by Neighborhood</h2>
+  <iframe src="map.html" width="900" height="520" style="border:none;"></iframe>
+  <p>This interactive map shows the Bluebike ride counts across Boston's neighborhoods. The color intensity reflects the number of rides, with darker areas indicating higher ride volumes. You can zoom in and click on each neighborhood for more details.</p>
+
+</body>
+</html>
+
+
+
+
 
