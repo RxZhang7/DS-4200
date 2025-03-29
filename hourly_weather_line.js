@@ -19,32 +19,27 @@ d3.json("hourly_weather_avgline.json").then(data => {
     .nice()
     .range([height, 0]);
 
-  // 固定天气顺序
   const weatherTypes = ["Clear", "Cloudy", "Fair", "Rain", "Snow"];
 
-  // 手动颜色匹配天气
   const color = d3.scaleOrdinal()
     .domain(weatherTypes)
     .range([
-      "#F57C00",  // Clear - sunny
-      "#78909C",  // Cloudy - gray
-      "#81C784",  // Fair - green
-      "#039BE5",  // Rain - blue
-      "#90CAF9"   // Snow - light blue
+      "#F57C00",  
+      "#78909C", 
+      "#81C784", 
+      "#039BE5",  
+      "#90CAF9"   
     ]);
 
   const grouped = d3.group(data, d => d.weather);
 
-  // X 轴
   svg.append("g")
     .attr("transform", `translate(0, ${height})`)
     .call(d3.axisBottom(x).ticks(24).tickFormat(d => `${d}:00`));
 
-  // Y 轴
   svg.append("g")
     .call(d3.axisLeft(y));
 
-  // 坐标轴标题
   svg.append("text")
     .attr("x", width / 2)
     .attr("y", height + 45)
@@ -60,12 +55,10 @@ d3.json("hourly_weather_avgline.json").then(data => {
     .style("font-size", "14px")
     .text("Average Ride Count");
 
-  // 折线生成器
   const line = d3.line()
     .x(d => x(d.hour))
     .y(d => y(d.avg_count));
 
-  // tooltip
   const tooltip = d3.select("body")
     .append("div")
     .style("position", "absolute")
@@ -76,7 +69,6 @@ d3.json("hourly_weather_avgline.json").then(data => {
     .style("pointer-events", "none")
     .style("opacity", 0);
 
-  // 绘制每条折线及圆点
   for (let weather of weatherTypes) {
     const values = data.filter(d => d.weather === weather);
 
@@ -108,7 +100,6 @@ d3.json("hourly_weather_avgline.json").then(data => {
       });
   }
 
-  // 图例
   const legend = svg.append("g")
     .attr("transform", `translate(${width + 20}, 0)`);
 
