@@ -35,7 +35,7 @@ d3.json("hourly_weather_avgline.json").then(data => {
 
   svg.append("g")
     .attr("transform", `translate(0, ${height})`)
-    .call(d3.axisBottom(x).ticks(24).tickFormat(d => `${d}:00`));
+    .call(d3.axisBottom(x).ticks(24).tickFormat(d => d));
 
   svg.append("g")
     .call(d3.axisLeft(y));
@@ -119,6 +119,13 @@ d3.json("hourly_weather_avgline.json").then(data => {
       .attr("alignment-baseline", "middle");
   });
 });
+
+
+
+
+
+
+
 
 
 
