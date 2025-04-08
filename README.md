@@ -24,6 +24,7 @@ Open a terminal and run:
 
 ```bash
 pip install pandas matplotlib seaborn altair geopandas folium openpyxl shapely pyproj fiona
+``` 
 
 ### Option 2: Using Anaconda to create a specific env
 
@@ -33,4 +34,6 @@ Open a terminal and run:
 conda create -n bluebikeenv python=3.10
 conda activate bluebikeenv
 conda install geopandas folium pandas matplotlib seaborn altair openpyxl shapely pyproj fiona -c conda-forge
+``` 
+
 
