@@ -90,6 +90,11 @@
   <p>This choropleth map visualizes the total Bluebike ride count aggregated by Boston neighborhoods. Darker shades represent higher ridership, indicating areas with greater bike demand. According to the visualization, central neighborhoods such as Fenway, Back Bay, and Allston exhibit significantly higher usage compared to peripheral areas like Jamaica Plain or East Boston. These high-demand zones likely correlate with population density, commercial activity, and proximity to major transit hubs, reflecting the role of urban infrastructure and commuter behavior in shaping bike-sharing patterns.</p>
   <p>Neighborhoods with prominent universities, business districts, and transit connections see more consistent ridership, suggesting that accessibility and mixed land use are key drivers of demand. This spatial overview provides a foundation for further analysis, allowing us to explore how temporal and environmental factors impact usage trends in these neighborhoods.</p>
   
+  <div class="center heatmap-section">
+    <img src="heatmap.png" alt="Correlation Heatmap" width="80%">
+  </div>  
+  <p>Moreover, we create a heatmap to determine the factors to be explored afterwards through correlations between variables. In this corrrelation plot, casual_riders_count, member_riders_count, casual_rider_duration, and member_rider_duration all show significant positive correlations with count, which would inspire us to understand the behavioral patterns of different bluebike user types with those variables by using a suitable visualization (barchart later). In addition, temperature shows a moderate positive correlation with total ride count (0.45), which also leds us to consider using scatter plots to further examine the effects of different weather conditions on the ridership. The correlations between rel_humidity, wspd, IsWeekend and the other variables are weak so that we would temporarily neglect the analysis of these factors.</p>
+
   <h2>Hourly Bluebike Usage Trends by Weather Conditions</h2>
   <div class="center">
     <iframe src="lineplot.html" width="100%" height="520" frameborder="0"></iframe>
@@ -111,15 +116,8 @@
       <iframe src="barchart.html" width="80%" height="520" frameborder="0"></iframe>
     </div>
   </div>
-  <p>To further understand rider behavior beyond weather influences, this bar chart explores how usage patterns vary by rider type across different days of the week. While the previous scatter plot revealed how environmental conditions affect total ridership, this chart highlights the behavioral distinctions between casual users and members. It shows that members consistently generate higher ride counts during weekdays, likely due to commuting routines, whereas casual riders tend to take fewer but longer trips, especially over the weekend. This distinction suggests different usage purposes—members ride out of necessity, while casual users bike more for leisure.</p>
-
+  <p>To further understand rider behavior beyond weather influences, this bar chart explores how usage patterns vary by rider type across different days of the week. While the previous scatter plot revealed how environmental conditions affect total ridership, this chart highlights the behavioral distinctions between casual users and members. It shows that members consistently generate higher ride counts during weekdays, likely due to commuting routines, whereas casual riders tend to take fewer but longer trips, especially over the weekend. This distinction suggests different usage purposes—members ride out of necessity, while casual users bike more for leisure.</p> 
   
-  <div class="center heatmap-section">
-    <img src="heatmap.png" alt="Correlation Heatmap" width="80%">
-  </div>  
-  <p>Finally, we create heatmaps to validate the conclusions of the previous visualizations. In the corrrelation plot, temperature shows a moderate positive correlation with both total ride count (0.45) and member ridership (0.38), supporting the previous observation that warmer weather encourages greater usage, especially on fair and clear days. The high correlation between travel time and casual rider duration (0.92) echoes the earlier bar chart insight that casual users tend to take longer leisure-oriented rides, particularly on weekends. In conclusion, these correlations confirm and quantify how weather conditions and user type shape Bluebike usage patterns.</p>
-
-
   <h2>Summary and Future Work</h2>
 
   <p>This analysis demonstrates how weather and user type shape Bluebike usage across Boston. Spatial patterns show higher ridership in central neighborhoods with strong transit access. Hourly trends confirm clear commuting peaks, especially under fair or clear conditions, while rain and snow reduce and flatten usage. Temperature between 5°C and 25°C encourages the most activity, and cloudy days sometimes outperform clear ones. Members ride more on weekdays for commuting, while casual users take longer leisure rides on weekends. The correlation heatmap supports these findings, showing strong links between weather, ride volume, and user behavior.</p>
